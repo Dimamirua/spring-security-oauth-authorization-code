@@ -26,8 +26,7 @@ INSERT INTO oauth_client_details
   additional_information,
   autoapprove
 )
-VALUES
-  (
+  SELECT
     'clientapp',
     'restservice',
     '$2a$13$m3lV588ApKfBP9LN3YJ7HOfWJ7g2Qg630IJN1jvPhdHju7bSBjwtS',
@@ -39,6 +38,9 @@ VALUES
     NULL,
     NULL,
     NULL
+  WHERE NOT EXISTS(
+      SELECT *
+      FROM oauth_client_details
   );
 /*commit*/
 CREATE TABLE IF NOT EXISTS oauth_access_token (
@@ -52,8 +54,8 @@ CREATE TABLE IF NOT EXISTS oauth_access_token (
 );
 /*commit*/
 CREATE TABLE IF NOT EXISTS oauth_refresh_token (
-  token_id VARCHAR(256),
-  token bytea,
-  authentication bytea
+  token_id       VARCHAR(256),
+  token          BYTEA,
+  authentication BYTEA
 );
 /*commit*/
