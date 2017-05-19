@@ -1,1 +1,1 @@
-==
+== localhost:8000/oauth/authorize?response_type=code&client_id=clientapp&redirect_uri=/api/authentication/tag
