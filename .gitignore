@@ -30,3 +30,5 @@ nbdist/
 /application-war/application-war.iml
 /backend/target/
 /spring-security-oauth-authorization-code.iml
+/web/bundle.js
+/web/node_modules/
