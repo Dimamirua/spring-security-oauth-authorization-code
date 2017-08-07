@@ -69,10 +69,10 @@ public class SpringSecurityOauthAuthorizationCodeApplication extends SpringBootS
             userRepository.save(user);
         }
 
-        try (Connection connection = dataSource.getConnection()) {
-            ScriptUtils.executeSqlScript(connection, new EncodedResource(new ClassPathResource("sql/tables.sql"), "utf8"),
-                    false, false, "--", "/*commit*/", "______", "__________=");
-        }
+//        try (Connection connection = dataSource.getConnection()) {
+//            ScriptUtils.executeSqlScript(connection, new EncodedResource(new ClassPathResource("src/main/resources/sql/tables.sql"), "utf8"),
+//                    false, false, "--", "/*commit*/", "______", "__________=");
+//        }
 
     }
 }

@@ -31,7 +31,7 @@ INSERT INTO oauth_client_details
     'restservice',
     '$2a$13$m3lV588ApKfBP9LN3YJ7HOfWJ7g2Qg630IJN1jvPhdHju7bSBjwtS',
     'read,write',
-    'authorization_code',
+    'authorization_code,refresh_token,password',
     NULL,
     'USER',
     NULL,

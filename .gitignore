@@ -23,3 +23,10 @@ dist/
 nbdist/
 .nb-gradle/
 /.idea/
+/application-war/target/
+/web/target/
+/web/web.iml
+/backend/backend.iml
+/application-war/application-war.iml
+/backend/target/
+/spring-security-oauth-authorization-code.iml
