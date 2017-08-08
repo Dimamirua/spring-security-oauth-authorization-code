@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server:prod": "webpack -p --config webpack.config.js --progress --profile --display-reasons --colors --display-error-details --display-cached",
-    "build": "npm run server:prod"
+    "server:dev": "NODE_ENV=development webpack-dev-server --host 0.0.0.0 --config webpack.config.js --inline --progress --colors --watch --hot --content-base ./",
+    "server:prod": "NODE_ENV=production webpack -p --config webpack.config.js --progress --profile --display-reasons --colors --display-error-details --display-cached",
+    "build": "npm run server:prod",
+    "start": "npm run server:dev"
   },
   "author": "",
   "license": "ISC",
