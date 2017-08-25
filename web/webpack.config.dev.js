@@ -30,6 +30,9 @@ module.exports = function () {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 loaders: ['babel-loader', 'eslint-loader']
+            }, {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             }
         ]
     };

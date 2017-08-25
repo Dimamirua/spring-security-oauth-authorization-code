@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const GLOBALS = {
     'process.env.NODE_ENV': JSON.stringify('production'),
@@ -36,13 +37,19 @@ module.exports = function () {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 loaders: ['babel-loader', 'eslint-loader']
+            }, {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader']
+                })
             }
         ]
     };
 
     config.plugins.push(new webpack.optimize.OccurenceOrderPlugin());
     config.plugins.push(new webpack.DefinePlugin(GLOBALS));
-    // config.plugins.push(new ExtractTextPlugin('styles.css'));
+    config.plugins.push(new ExtractTextPlugin('[hash]styles.css'));
     config.plugins.push(new webpack.optimize.DedupePlugin());
     config.plugins.push(new webpack.optimize.UglifyJsPlugin());
 
