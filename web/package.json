@@ -6,6 +6,7 @@
   "scripts": {
     "server:dev": "webpack-dev-server --host 0.0.0.0 --config webpack.config.dev.js --inline --progress --colors --watch --hot --content-base ./",
     "server:prod": "webpack -p --config webpack.config.prod.js --progress --profile --display-reasons --colors --display-error-details --display-cached",
+    "electron": "electron ./electron.config.j",
     "prod": "npm run server:prod",
     "start": "npm run server:dev"
   },
@@ -18,6 +19,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.5",
+    "electron": "^1.7.5",
     "eslint": "^4.5.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-react": "^7.3.0",
