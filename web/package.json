@@ -6,7 +6,7 @@
   "scripts": {
     "server:dev": "webpack-dev-server --host 0.0.0.0 --config webpack.config.dev.js --inline --progress --colors --watch --hot --content-base ./",
     "server:prod": "webpack -p --config webpack.config.prod.js --progress --profile --display-reasons --colors --display-error-details --display-cached",
-    "build": "npm run server:prod",
+    "prod": "npm run server:prod",
     "start": "npm run server:dev"
   },
   "author": "",
@@ -21,6 +21,7 @@
     "eslint": "^4.5.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-react": "^7.3.0",
+    "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.30.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.4.1",

@@ -22,7 +22,6 @@ module.exports = function () {
         filename: '[hash]bundle.js'
     };
 
-    // config.devtool = 'source-map';
 
     config.plugins.push(new HtmlWebpackPlugin({
         inject: true,
@@ -47,10 +46,9 @@ module.exports = function () {
         ]
     };
 
-    config.plugins.push(new webpack.optimize.OccurenceOrderPlugin());
+    config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
     config.plugins.push(new webpack.DefinePlugin(GLOBALS));
     config.plugins.push(new ExtractTextPlugin('[hash]styles.css'));
-    config.plugins.push(new webpack.optimize.DedupePlugin());
     config.plugins.push(new webpack.optimize.UglifyJsPlugin());
 
 
