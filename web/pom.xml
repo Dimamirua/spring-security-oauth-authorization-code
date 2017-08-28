@@ -21,7 +21,7 @@
                 <configuration>
                     <classesDirectory>target</classesDirectory>
                     <includes>
-                        <include>static/**</include>
+                        <include>dist/**</include>
                     </includes>
                 </configuration>
             </plugin>
