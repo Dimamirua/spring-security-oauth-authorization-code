@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS oauth_client_details (
   additional_information  VARCHAR(4096),
   autoapprove             VARCHAR(256)
 );
-/*commit*/
+
 INSERT INTO oauth_client_details
 (
   client_id,
@@ -42,7 +42,7 @@ INSERT INTO oauth_client_details
       SELECT *
       FROM oauth_client_details
   );
-/*commit*/
+
 CREATE TABLE IF NOT EXISTS oauth_access_token (
   token_id          VARCHAR(256),
   token             BYTEA,
@@ -52,10 +52,9 @@ CREATE TABLE IF NOT EXISTS oauth_access_token (
   authentication    BYTEA,
   refresh_token     VARCHAR(256)
 );
-/*commit*/
+
 CREATE TABLE IF NOT EXISTS oauth_refresh_token (
   token_id       VARCHAR(256),
   token          BYTEA,
   authentication BYTEA
 );
-/*commit*/
