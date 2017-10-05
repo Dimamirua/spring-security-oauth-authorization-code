@@ -5,8 +5,8 @@ import { Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { createHashHistory } from 'history';
 
-import createStore from '/src/createStore';
-import getRoutes from '/src/routes';
+import createStore from 'src/createStore';
+import getRoutes from 'src/routes';
 
 const hashHistory = createHashHistory();
 const store = createStore(hashHistory);

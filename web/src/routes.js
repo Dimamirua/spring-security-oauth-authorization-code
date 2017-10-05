@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-import RootContainer from '/src/containers/RootContainer/RootContainer';
+import RootContainer from './containers/RootContainer/RootContainer';
 
 export default function getRoutes() {
 

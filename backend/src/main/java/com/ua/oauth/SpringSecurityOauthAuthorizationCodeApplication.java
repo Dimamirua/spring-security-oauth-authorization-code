@@ -11,13 +11,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.support.EncodedResource;
-import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
 import java.util.HashSet;
 import java.util.List;
 
@@ -25,8 +20,12 @@ import java.util.List;
 @EnableAutoConfiguration
 public class SpringSecurityOauthAuthorizationCodeApplication extends SpringBootServletInitializer implements CommandLineRunner {
 
+    private final ApplicationContext applicationContext;
+
     @Autowired
-    private ApplicationContext applicationContext;
+    public SpringSecurityOauthAuthorizationCodeApplication(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(SpringSecurityOauthAuthorizationCodeApplication.class, args);
@@ -37,7 +36,6 @@ public class SpringSecurityOauthAuthorizationCodeApplication extends SpringBootS
         PasswordEncoder passwordEncoder = applicationContext.getBean(PasswordEncoder.class);
         UserRepository userRepository = applicationContext.getBean(UserRepository.class);
         RoleRepository roleRepository = applicationContext.getBean(RoleRepository.class);
-        DataSource dataSource = applicationContext.getBean(DataSource.class);
 
         List<Role> roles = roleRepository.findAll();
         HashSet<Role> rolesSet = null;
@@ -68,11 +66,6 @@ public class SpringSecurityOauthAuthorizationCodeApplication extends SpringBootS
             }
             userRepository.save(user);
         }
-
-//        try (Connection connection = dataSource.getConnection()) {
-//            ScriptUtils.executeSqlScript(connection, new EncodedResource(new ClassPathResource("src/main/resources/sql/tables.sql"), "utf8"),
-//                    false, false, "--", "/*commit*/", "______", "__________=");
-//        }
 
     }
 }

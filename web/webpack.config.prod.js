@@ -53,7 +53,7 @@ module.exports = function () {
 
 
     config.resolve = {
-        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+        modules: [__dirname, 'node_modules'],
         extensions: ['.js', '.jsx', '.json', '*']
     };
 

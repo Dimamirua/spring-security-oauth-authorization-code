@@ -4,6 +4,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
+import java.security.Principal;
 import java.util.Base64;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.RequestMapping;

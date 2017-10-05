@@ -4,6 +4,5 @@
     "react"
   ],
   "plugins": [
-    "drop-src"
   ]
 }

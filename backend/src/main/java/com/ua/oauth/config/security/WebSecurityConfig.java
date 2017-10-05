@@ -21,8 +21,12 @@ import java.security.SecureRandom;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final CustomUserDetailsService customUserDetailsService;
+
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    public WebSecurityConfig(CustomUserDetailsService customUserDetailsService) {
+        this.customUserDetailsService = customUserDetailsService;
+    }
 
     @Bean
     public static PasswordEncoder passwordEncoder() throws NoSuchAlgorithmException {

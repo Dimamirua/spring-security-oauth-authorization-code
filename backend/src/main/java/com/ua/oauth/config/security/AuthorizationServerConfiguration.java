@@ -27,15 +27,20 @@ import static com.ua.oauth.config.security.WebSecurityConfig.passwordEncoder;
 public class AuthorizationServerConfiguration extends
         AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    @Qualifier("authenticationManagerBean")
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+
+    private final CustomUserDetailsService userDetailsService;
+
+    private final DataSource dataSource;
 
     @Autowired
-    private CustomUserDetailsService userDetailsService;
-
-    @Autowired
-    private DataSource dataSource;
+    public AuthorizationServerConfiguration(@Qualifier("authenticationManagerBean") AuthenticationManager authenticationManager,
+                                            CustomUserDetailsService userDetailsService,
+                                            DataSource dataSource) {
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.dataSource = dataSource;
+    }
 
     @Bean
     protected TokenStore tokenStore() {

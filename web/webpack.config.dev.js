@@ -4,8 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = function () {
-
-
     const config = {};
 
     config.plugins = [];
@@ -19,7 +17,7 @@ module.exports = function () {
 
     config.plugins.push(new HtmlWebpackPlugin({
         inject: true,
-        template: __dirname + '/src/template/index.html',
+        template: path.resolve(__dirname, '/src/template/index.html'),
     }));
 
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
@@ -54,10 +52,9 @@ module.exports = function () {
         }
     };
     config.resolve = {
-        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+        modules: [__dirname, 'node_modules'],
         extensions: ['.js', '.jsx', '.json', '*']
     };
-
     return config;
 }();
 
