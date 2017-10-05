@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
+
 module.exports = function () {
     const config = {};
 
@@ -17,7 +18,7 @@ module.exports = function () {
 
     config.plugins.push(new HtmlWebpackPlugin({
         inject: true,
-        template: path.resolve(__dirname, '/src/template/index.html'),
+        template: __dirname + '/src/template/index.html',
     }));
 
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
