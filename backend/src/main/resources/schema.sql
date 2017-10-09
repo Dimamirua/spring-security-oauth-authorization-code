@@ -92,36 +92,76 @@ CREATE TABLE IF NOT EXISTS  acl_entry (
   CONSTRAINT foreign_fk_5 FOREIGN KEY (sid) REFERENCES app_user (user_id)
 );
 
-INSERT INTO  acl_class (id, class) VALUES
-  (1, 'com.ua.oauth.domain.Admin'),
-  (2, 'com.ua.oauth.domain.Personal'),
-  (3, 'com.ua.oauth.domain.Public');
+WITH acl_class_data(id, class) AS (
+  VALUES
+    (1, 'com.ua.oauth.domain.Admin'),
+    (2, 'com.ua.oauth.domain.Personal'),
+    (3, 'com.ua.oauth.domain.Public')
+)
+INSERT INTO acl_class (id, class)
+  SELECT
+    d.id,
+    d.class
+  FROM acl_class_data d
+  WHERE NOT exists(SELECT 1
+                   FROM acl_class);
 
-INSERT INTO acl_object_identity (id, object_id_class, object_id_identity, parent_object, owner_sid, entries_inheriting)
-VALUES
-  (1, 1, 1, NULL, 1, FALSE),
-  (2, 1, 2, NULL, 1, FALSE),
-  (3, 1, 3, NULL, 1, FALSE),
-  (4, 2, 1, NULL, 1, FALSE),
-  (5, 2, 2, NULL, 1, FALSE),
-  (6, 2, 3, NULL, 1, FALSE),
-  (7, 3, 1, NULL, 1, FALSE),
-  (8, 3, 2, NULL, 1, FALSE),
-  (9, 3, 3, NULL, 1, FALSE);
 
-INSERT INTO acl_entry (id, acl_object_identity, ace_order, sid, mask, granting, audit_success, audit_failure) VALUES
-  (1, 1, 1, 1, 1, TRUE, TRUE, TRUE),
-  (2, 2, 1, 1, 1, TRUE, TRUE, TRUE),
-  (3, 3, 1, 1, 1, TRUE, TRUE, TRUE),
-  (4, 1, 2, 1, 2, TRUE, TRUE, TRUE),
-  (5, 2, 2, 1, 2, TRUE, TRUE, TRUE),
-  (6, 3, 2, 1, 2, TRUE, TRUE, TRUE),
-  (7, 4, 1, 1, 1, TRUE, TRUE, TRUE),
-  (8, 5, 1, 1, 1, TRUE, TRUE, TRUE),
-  (9, 6, 1, 1, 1, TRUE, TRUE, TRUE),
-  (10, 7, 1, 1, 1, TRUE, TRUE, TRUE),
-  (11, 8, 1, 1, 1, TRUE, TRUE, TRUE),
-  (12, 9, 1, 1, 1, TRUE, TRUE, TRUE),
-  (13, 7, 2, 1, 2, TRUE, TRUE, TRUE),
-  (14, 8, 2, 1, 2, TRUE, TRUE, TRUE),
-  (15, 9, 2, 1, 2, TRUE, TRUE, TRUE);
+WITH acl_object_identity_data(id, object_id_class, object_id_identity, owner_sid, entries_inheriting) AS (
+  VALUES
+    (1, 1, 1, 1, FALSE),
+    (2, 1, 2, 1, FALSE),
+    (3, 1, 3, 1, FALSE),
+    (4, 2, 1, 1, FALSE),
+    (5, 2, 2, 1, FALSE),
+    (6, 2, 3, 1, FALSE),
+    (7, 3, 1, 1, FALSE),
+    (8, 3, 2, 1, FALSE),
+    (9, 3, 3, 1, FALSE)
+)
+INSERT INTO acl_object_identity (id, object_id_class, object_id_identity,
+                                 owner_sid, entries_inheriting)
+  SELECT
+    d.id,
+    d.object_id_class,
+    d.object_id_identity,
+    d.owner_sid,
+    d.entries_inheriting
+  FROM acl_object_identity_data d
+  WHERE NOT exists(SELECT *
+                   FROM acl_object_identity);
+
+
+WITH acl_entry_data(id, acl_object_identity, ace_order, sid, mask,
+    granting, audit_success, audit_failure) AS (
+  VALUES
+    (1, 1, 1, 1, 1, TRUE, TRUE, TRUE),
+    (2, 2, 1, 1, 1, TRUE, TRUE, TRUE),
+    (3, 3, 1, 1, 1, TRUE, TRUE, TRUE),
+    (4, 1, 2, 1, 2, TRUE, TRUE, TRUE),
+    (5, 2, 2, 1, 2, TRUE, TRUE, TRUE),
+    (6, 3, 2, 1, 2, TRUE, TRUE, TRUE),
+    (7, 4, 1, 1, 1, TRUE, TRUE, TRUE),
+    (8, 5, 1, 1, 1, TRUE, TRUE, TRUE),
+    (9, 6, 1, 1, 1, TRUE, TRUE, TRUE),
+    (10, 7, 1, 1, 1, TRUE, TRUE, TRUE),
+    (11, 8, 1, 1, 1, TRUE, TRUE, TRUE),
+    (12, 9, 1, 1, 1, TRUE, TRUE, TRUE),
+    (13, 7, 2, 1, 2, TRUE, TRUE, TRUE),
+    (14, 8, 2, 1, 2, TRUE, TRUE, TRUE),
+    (15, 9, 2, 1, 2, TRUE, TRUE, TRUE)
+)
+INSERT INTO acl_entry (id, acl_object_identity, ace_order, sid, mask,
+                       granting, audit_success, audit_failure)
+  SELECT
+    d.id,
+    d.acl_object_identity,
+    d.ace_order,
+    d.sid,
+    d.mask,
+    d.granting,
+    d.audit_success,
+    d.audit_failure
+  FROM acl_entry_data d
+  WHERE NOT exists(SELECT *
+                   FROM acl_entry);
