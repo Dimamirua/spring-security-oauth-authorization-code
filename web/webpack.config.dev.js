@@ -3,7 +3,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
-
 module.exports = function () {
     const config = {};
 
@@ -30,8 +29,8 @@ module.exports = function () {
                 exclude: /(node_modules|bower_components)/,
                 loaders: ['babel-loader', 'eslint-loader']
             }, {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                test: /\.(css|scss)$/,
+                use: ['style-loader', 'css-loader','sass-loader']
             }
         ]
     };
