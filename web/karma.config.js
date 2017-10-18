@@ -3,7 +3,7 @@ const webpackConfig = require('./webpack.config.tests');
 module.exports = function (config) {
     const configuration = {};
 
-    configuration.basePath = __dirname;
+    configuration.basePath = './';
     configuration.frameworks = ['mocha'];
     configuration.browsers = ['PhantomJS'];
     configuration.webpack = webpackConfig;
@@ -14,4 +14,4 @@ module.exports = function (config) {
 
     return config.set(configuration);
 
-}();
+};
